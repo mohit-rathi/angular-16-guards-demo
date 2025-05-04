@@ -5,7 +5,22 @@
   "projects": {
     "guards-demo": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true,
+          "functional": false
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true,
+          "functional": false
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",

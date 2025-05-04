@@ -1,0 +1,3 @@
+.active {
+    @apply p-2 bg-white text-indigo-500 rounded-md;
+}
