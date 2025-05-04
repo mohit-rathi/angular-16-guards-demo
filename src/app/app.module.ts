@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { StaticComponent } from './components/static/static.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     WishlistComponent,
     CartComponent,
     OrdersComponent,
+    StaticComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],

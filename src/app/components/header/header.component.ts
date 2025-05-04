@@ -14,6 +14,7 @@ export class HeaderComponent {
     { label: 'Login', path: '/login' },
     { label: 'Profile', path: '/profile' },
     { label: 'Products', path: '/products' },
+    { label: 'Static', path: '/static' },
   ];
 
   logout() {

@@ -12,6 +12,7 @@ import { authGuard, AuthGuard } from './guards/auth.guard';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { StaticComponent } from './components/static/static.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,11 @@ const routes: Routes = [
     // canActivate: [authGuard],
     resolve: { product: ProductDetailResolver },
     // resolve: { product: productDetailResolver },
+  },
+  {
+    path: 'static',
+    component: StaticComponent,
+    data: { title: 'Static Page', description: 'This is a static page', featureId: 1, requiredPermissions: ['READ', 'WRITE'] },
   },
   {
     path: 'not-found',
