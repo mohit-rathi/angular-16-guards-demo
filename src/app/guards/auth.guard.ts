@@ -5,6 +5,7 @@ import {
   CanActivateChild,
   CanActivateChildFn,
   CanActivateFn,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -15,7 +16,10 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,7 +29,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated() ? true : this.router.parseUrl('/login');
   }
 
   canActivateChild(
@@ -36,12 +40,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated() ? true : this.router.parseUrl('/login');
   }
 }
 
 export const authGuard: CanActivateFn | CanActivateChildFn = (route, state) => {
   const authService = inject(AuthService);
+  const router = inject(Router);
 
-  return authService.isAuthenticated();
+  return authService.isAuthenticated() ? true : router.parseUrl('/login');
 };
