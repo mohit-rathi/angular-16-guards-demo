@@ -12,13 +12,19 @@
             <a class="mr-5 hover:text-gray-900" *ngFor="let link of navLinks" [routerLink]="link.path"
                 routerLinkActive="active">{{ link.label }}</a>
         </nav>
-        <button
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 text-indigo-500"
-            (click)="logout()">Logout
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-        </button>
+        <div class="flex items-center gap-4 text-black">
+            <select [formControl]="version">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <button
+                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 text-indigo-500"
+                (click)="logout()">Logout
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 </header>

@@ -16,6 +16,8 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { StaticComponent } from './components/static/static.component';
+import { FeatureV1Component } from './components/feature-v1/feature-v1.component';
+import { FeatureV2Component } from './components/feature-v2/feature-v2.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { StaticComponent } from './components/static/static.component';
     CartComponent,
     OrdersComponent,
     StaticComponent,
+    FeatureV1Component,
+    FeatureV2Component,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],

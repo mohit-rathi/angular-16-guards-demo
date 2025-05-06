@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -13,6 +13,10 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { StaticComponent } from './components/static/static.component';
+import { FeatureV1Component } from './components/feature-v1/feature-v1.component';
+import { FeatureV2Component } from './components/feature-v2/feature-v2.component';
+import { FeatureService } from './services/feature.service';
+import { featureGuard } from './guards/feature.guard';
 
 const routes: Routes = [
   {
@@ -77,6 +81,20 @@ const routes: Routes = [
     // canLoad: [AuthGuard],
     canMatch: [AuthGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
+  {
+    path: 'feature',
+    // canActivate: [() => inject(FeatureService).getVersion() === 1],
+    // canMatch: [() => inject(FeatureService).getVersion() === 1],
+    canMatch: [featureGuard(1)],
+    component: FeatureV1Component,
+  },
+  {
+    path: 'feature',
+    // canActivate: [() => inject(FeatureService).getVersion() === 2],
+    // canMatch: [() => inject(FeatureService).getVersion() === 2],
+    canMatch: [featureGuard(2)],
+    component: FeatureV2Component,
   },
   {
     path: 'not-found',
