@@ -15,7 +15,6 @@ export class StaticComponent implements OnInit {
     this.route.data.subscribe({
       next: (data) => {
         this.data = data;
-        console.log(data);
       }
     });
   }

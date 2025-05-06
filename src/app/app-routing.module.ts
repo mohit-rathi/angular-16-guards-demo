@@ -72,6 +72,13 @@ const routes: Routes = [
     data: { title: 'Static Page', description: 'This is a static page', featureId: 1, requiredPermissions: ['READ', 'WRITE'] },
   },
   {
+    path: 'backoffice',
+    // canActivate: [AuthGuard],
+    // canLoad: [AuthGuard],
+    canMatch: [AuthGuard],
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent,
   },

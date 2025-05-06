@@ -15,6 +15,7 @@ export class HeaderComponent {
     { label: 'Profile', path: '/profile' },
     { label: 'Products', path: '/products' },
     { label: 'Static', path: '/static' },
+    { label: 'Backoffice', path: '/backoffice' },
   ];
 
   logout() {
