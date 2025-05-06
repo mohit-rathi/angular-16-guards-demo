@@ -12,8 +12,8 @@
             <a class="mr-5 hover:text-gray-900" *ngFor="let link of navLinks" [routerLink]="link.path"
                 routerLinkActive="active">{{ link.label }}</a>
         </nav>
-        <div class="flex items-center gap-4 text-black">
-            <select [formControl]="version">
+        <div class="flex items-center gap-4">
+            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" [formControl]="version">
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
