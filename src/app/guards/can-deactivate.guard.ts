@@ -25,6 +25,9 @@ export class CanDeactivateGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log('CURRENT ROUTE: ', currentRoute);
+    console.log('CURRENT STATE: ', currentState);
+    console.log('NEXT STATE: ', nextState);
     return component.canDeactivate();
   }
 }

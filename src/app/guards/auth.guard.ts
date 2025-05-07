@@ -8,6 +8,7 @@ import {
   CanLoad,
   CanLoadFn,
   CanMatch,
+  CanMatchFn,
   Route,
   Router,
   RouterStateSnapshot,
@@ -36,6 +37,8 @@ export class AuthGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log('ROUTE: ', route);
+    console.log('STATE: ', state);
     return this.authService.isAuthenticated()
       ? true
       : this.router.parseUrl('/login');
@@ -75,6 +78,8 @@ export class AuthGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log('ROUTE: ', route);
+    console.log('SEGMENTS: ', segments);
     return this.authService.isAuthenticated()
       ? true
       : this.router.parseUrl('/login');
@@ -94,3 +99,10 @@ export const authLoadGuard: CanLoadFn = (route, segments) => {
 
   return authService.isAuthenticated() ? true : router.parseUrl('/login');
 };
+
+export const authMatchGuard: CanMatchFn = (route, segments) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  return authService.isAuthenticated() ? true : router.parseUrl('/login');
+}
