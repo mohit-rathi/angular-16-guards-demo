@@ -5,16 +5,15 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
   ResolveFn,
-  UrlTree,
 } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductDetailResolver implements Resolve<Product | UrlTree> {
+export class ProductDetailResolver implements Resolve<Product | undefined> {
   constructor(
     private readonly productService: ProductService,
     private readonly router: Router
@@ -23,24 +22,16 @@ export class ProductDetailResolver implements Resolve<Product | UrlTree> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Product | UrlTree> | Promise<Product | UrlTree> | Product | UrlTree {
+  ): Observable<Product | undefined> | Promise<Product | undefined> | Product | undefined {
     const productId = route.paramMap.get('id');
-    return this.productService.getProductById(+productId!).pipe(
-      map((product) => {
-        return product ? product : this.router.parseUrl('/not-found');
-      }),
-    );
+    return this.productService.getProductById(+productId!);
   }
 }
 
-export const productDetailResolver: ResolveFn<Product | UrlTree> = (route, state) => {
+export const productDetailResolver: ResolveFn<Product | undefined> = (route, state) => {
   const productService = inject(ProductService);
   const router = inject(Router);
 
   const productId = route.paramMap.get('id');
-  return productService.getProductById(+productId!).pipe(
-    map((product) => {
-      return product ? product : router.parseUrl('/not-found');
-    })
-  );
+  return productService.getProductById(+productId!);
 };
