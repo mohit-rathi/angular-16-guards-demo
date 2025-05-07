@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import {
-  Router,
   Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
@@ -14,23 +13,26 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductDetailResolver implements Resolve<Product | undefined> {
-  constructor(
-    private readonly productService: ProductService,
-    private readonly router: Router
-  ) {}
+  constructor(private readonly productService: ProductService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<Product | undefined> | Promise<Product | undefined> | Product | undefined {
+  ):
+    | Observable<Product | undefined>
+    | Promise<Product | undefined>
+    | Product
+    | undefined {
     const productId = route.paramMap.get('id');
     return this.productService.getProductById(+productId!);
   }
 }
 
-export const productDetailResolver: ResolveFn<Product | undefined> = (route, state) => {
+export const productDetailResolver: ResolveFn<Product | undefined> = (
+  route,
+  state
+) => {
   const productService = inject(ProductService);
-  const router = inject(Router);
 
   const productId = route.paramMap.get('id');
   return productService.getProductById(+productId!);
